@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "google_map-Starting",
+			"path": "../../../../../Downloads/google_map-Starting"
+		},
+		{
+			"name": "projects",
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "projects"
+	}
+}

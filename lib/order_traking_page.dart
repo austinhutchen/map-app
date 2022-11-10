@@ -14,14 +14,13 @@ class OrderTrackingPage extends StatefulWidget {
 class OrderTrackingPageState extends State<OrderTrackingPage> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  static const LatLng sourceLocation = LatLng(37.33500926, -122.03272188);
+  static const LatLng sourceLocation = LatLng(40.00411, -105.25402);
   static const LatLng destination = LatLng(37.33429383, -122.06600055);
   static const key = "AIzaSyCUnH06kwV5fUVeAi1I_iA00_bL-ZqKwTg";
   List<LatLng> polylinecoords = [];
+
   void getPoints() async {
     PolylinePoints polypoints = PolylinePoints();
-    ;
-
     PolylineResult result = await polypoints.getRouteBetweenCoordinates(
       key,
       PointLatLng(sourceLocation.latitude, sourceLocation.longitude),
@@ -33,33 +32,33 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
           LatLng(point.latitude, point.longitude),
         ),
       );
-      setState(() {
-        
-      });
+      setState(() {});
     }
   }
 
-@override
-void initState(){
-  getPoints();
-  super.initState();
-}
+  @override
+  void initState() {
+    getPoints();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           "Maps",
-          style: TextStyle(color: Colors.black, fontSize: 16),
+          style: TextStyle(color: Colors.blue, fontSize: 20),
         ),
       ),
       body: GoogleMap(
-          initialCameraPosition:
-              const CameraPosition(target: sourceLocation, zoom: 14.5),
-              polylines: {
-               Polyline(polylineId: PolylineId("route"),
-                points: polylinecoords,),
-              },
+          initialCameraPosition: const CameraPosition(target: sourceLocation, zoom: 12.5),
+          polylines: {
+            Polyline(
+              polylineId: const PolylineId("route"),
+              points: polylinecoords,
+            ),
+          },
           markers: {
             const Marker(
               markerId: MarkerId("source"),
@@ -67,7 +66,7 @@ void initState(){
             ),
             const Marker(
               markerId: MarkerId("destination"),
-              position: sourceLocation,
+              position: destination,
             )
           }),
     );
